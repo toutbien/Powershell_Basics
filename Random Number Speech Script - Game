@@ -1,1 +1,43 @@
+Add-Type -AssemblyName System.Speech
+$SpeechSynthesizer = New-Object -TypeName System.Speech.Synthesis.SpeechSynthesizer
+$SpeechSynthesizer.SelectVoice("Microsoft Zira Desktop")
 
+ [int]$guess = 0
+ [int]$attempt = 0
+ [int]$number = Get-Random -Minimum 1 -Maximum 77
+
+$SpeechSynthesizer.Speak("Good evening, Squirrel Friend! I'm your computer and I have hidden a number between 1 and 77 in my treasure trove. I'll give you 7 guesses to win the treasure! Are you ready?")
+
+do {
+  $SpeechSynthesizer.SpeakAsync('What is your guess?') | Out-Null
+
+   try {
+		$guess = Read-Host 'Please enter your guess now'
+
+		if ($guess -lt 1 -or $guess -gt 77) {
+		    throw
+	    }  
+}
+    catch {
+	    $SpeechSynthesizer.Speak('We are not playing games, bub.')
+	continue
+}
+
+    if ($guess -lt $number) {
+        $SpeechSynthesizer.Speak('Bring it up human')
+        }
+ 	elseif ($guess -gt $number) {
+		$SpeechSynthesizer.Speak('Take it down a notch')
+  }
+
+$attempt += 1
+}
+until ($guess -eq $number -or $attempt -eq 7)
+
+if ($guess -eq $number) {
+	$SpeechSynthesizer.Speak('Great job! My treasure trove is just inside the hypervisor.
+                   Find it yourself')
+}
+else {
+	$SpeechSynthesizer.Speak('You have ceased to impress me. Goodbye')
+}
