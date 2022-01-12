@@ -1,6 +1,5 @@
 #This was created to update days left in class for the MSSA CSCA5 cohort in 2022 by @toutbien
-#Updated to math instead of Get-Date to calculate days until end of course
-#added automation to post at 0830EST each day
+#Updated to math instead of Get-Date to calculate only days until end of course
 
 $hookUrl = 'https://discordapp.com/api/webhooks/930814014425006140/oktV16m1AtRcdGqj2HIpt0cI3UefZoRlEU941RyHwEkBwWKAGvlOh8me0aHzcV65I7ek'
 $days = [math]::Ceiling((([DateTime]'05-10-2022')-(Get-Date)).TotalDays)
