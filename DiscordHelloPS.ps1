@@ -1,8 +1,21 @@
-#This was created to update days left in class for the MSSA CSCA5 cohort in 2022 by @toutbien
-#Updated to math instead of Get-Date to calculate only days until end of course
-
 $hookUrl = 'https://discordapp.com/api/webhooks/930814014425006140/oktV16m1AtRcdGqj2HIpt0cI3UefZoRlEU941RyHwEkBwWKAGvlOh8me0aHzcV65I7ek'
-$days = [math]::Ceiling((([DateTime]'05-10-2022')-(Get-Date)).TotalDays)
+
+$start=Get-Date
+$end=([DateTime]'05-10-2022')
+#define a counter
+$days=0
+#test every date between start and end to see if it is a weekend
+for ($d=$start;$d -le $end;$d=$d.AddDays(1)){
+if ($d.DayOfWeek -notmatch "Sunday|Saturday") {
+#if the day of the week is not a Saturday or Sunday
+#increment the counter
+$days++
+}
+}
+if ($start.Hour -gt 17){
+    $days = $days - 1
+}
+
 $content = @"
 This is a powershell script sent from toutbien's command center.
 Starlog date and time information : $(Get-Date)
