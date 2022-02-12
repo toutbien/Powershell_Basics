@@ -29,7 +29,7 @@ Get-Command
 #I picked cmdlet, so the below returns all cmdlet in pwsh
 Get-Command -Type cmdlet 
 
-#What I then wanted was more details than just the clean headers, so I running
+#What I then wanted was more details than just the clean headers, so I ran
 #a FormatList (alias: fl) gives me the Name, CommandType (already known), Definition, DLL, 
 #Path, the HelpFile (xml), the Parameters, ImplementatingType, Verb, and Noun
 #So for educational purposes I don't need all of that. Let's just select for 
