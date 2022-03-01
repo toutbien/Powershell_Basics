@@ -405,10 +405,9 @@ $questions = @{
     c. VM scale set`
     d. Azure VM" = 'b'
     }
-    
     $correct = 0
     $incorrect = 0
-    foreach($key in $questions.Keys)
+    foreach($key in ($questions.Keys | Sort-Object {Get-Random}))
     {
         #change this time after AddSeconds() to adjust time
         $stopTime = [datetime]::Now.AddSeconds(45)
